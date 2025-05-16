@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .delete-btn {
+            float: right;
+            margin: auto;
+            margin-bottom: 8px;
+        }
+
+        li > a {
+            font-size: 20px;
+        }
+        </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper blue">
+          <a style="margin-left: 15px;"  href="index.html" class="brand-logo"><i class="material-icons left">developer_mode</i>Mock API Response</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="index.html">Save</a></li>
+            <li class="active"><a href="#">View History</a></li> 
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <h2>Mock History</h2>
+    <button class="waves-effect waves-light btn-small blue" onclick="clearAll()"><i class="material-icons left">delete_forever</i>Clear All</button>
+    <ul class="collection" id="history-list"></ul>
+      </div>
+  
+    
+    <script>
+        async function loadHistory() {
+            const res = await fetch("/history");
+            const urls = await res.json();
+            const list = document.getElementById("history-list");
+            list.innerHTML = "";
+
+            urls.forEach(({ id, url }) => {
+                const li = document.createElement("li");
+                li.setAttribute("class","collection-item");
+                li.innerHTML = `<a href="${url}" target="_blank">${url}</a> 
+                    <button class="delete-btn waves-effect waves-light btn-small blue" onclick="deleteMock('${id}')"><i class="material-icons left">delete</i>Delete</button>`;
+                list.appendChild(li);
+            });
+        }
+
+        async function deleteMock(id) {
+            await fetch(`/delete/${id}`, { method: "DELETE" });
+            loadHistory();
+        }
+
+        async function clearAll() {
+            await fetch("/clear", { method: "DELETE" });
+            loadHistory();
+        }
+
+        loadHistory();
+    </script>
+</body>
+</html>

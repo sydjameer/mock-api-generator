@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock API Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="script.js"></script>
+</head>
+
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue">
+          <a style="margin-left: 15px;" href="#" class="brand-logo"><i class="material-icons left">developer_mode</i>Mock API Response</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="active"><a href="#">Save</a></li>
+            <li><a href="history.html">View History</a></li> 
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <form id="mockForm">
+                    <!-- HTTP Status Dropdown -->
+            
+                    <label>HTTP Status</label>
+                    <select id="httpStatus" class="browser-default">
+                        <option value="100">100 Continue</option>
+                        <option value="101">101 Switching Protocols</option>
+                        <option value="200" selected>200 OK</option>
+                        <option value="201">201 Created</option>
+                        <option value="202">202 Accepted</option>
+                        <option value="204">204 No Content</option>
+                        <option value="301">301 Moved Permanently</option>
+                        <option value="302">302 Found</option>
+                        <option value="304">304 Not Modified</option>
+                        <option value="400">400 Bad Request</option>
+                        <option value="401">401 Unauthorized</option>
+                        <option value="403">403 Forbidden</option>
+                        <option value="404">404 Not Found</option>
+                        <option value="405">405 Method Not Allowed</option>
+                        <option value="409">409 Conflict</option>
+                        <option value="410">410 Gone</option>
+                        <option value="429">429 Too Many Requests</option>
+                        <option value="500">500 Internal Server Error</option>
+                        <option value="501">501 Not Implemented</option>
+                        <option value="502">502 Bad Gateway</option>
+                        <option value="503">503 Service Unavailable</option>
+                        <option value="504">504 Gateway Timeout</option>
+                    </select>
+                    <!-- Content Type Dropdown -->
+                    <label>Content Type</label>
+                    <select id="contentType" class="browser-default">
+                        <option value="application/json" selected>application/json</option>
+                        <option value="text/html">text/html</option>
+                        <option value="text/plain">text/plain</option>
+                    </select>
+    
+                    <!-- Charset Dropdown -->
+                    <label>Charset</label>
+                    <select id="charset" class="browser-default">
+                        <option value="UTF-8" selected>UTF-8</option>
+                        <option value="ISO-8859-1">ISO-8859-1</option>
+                    </select>
+    
+                    <!-- Headers -->
+                    <label>HTTP Headers (JSON format)</label>
+                    <textarea id="headers" class="materialize-textarea" placeholder='{"Custom-Header": "value"}'></textarea>
+    
+                    <!-- Response Body -->
+                    <label>Response Body (JSON format)</label>
+                    <textarea id="responseBody" class="materialize-textarea" placeholder='{"status": "SUCCESS"}' ></textarea>
+    
+                    <button data-target="modal1" class="btn waves-effect blue modal-trigger">
+                        
+                        Save & Generate URL<i class="material-icons right">send</i></button>
+               
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+
+                            <blockquote>
+                                <a id="urlLink" href="#" target="_blank" class="btn waves-effect green"><i class="material-icons left">check</i>Test URL</a> <span id="urlDisplay"></span>
+                            </blockquote>        
+                
+                                </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close btn waves-effect waves-light blue"><i class="material-icons left">close</i>Close</a>
+                        </div>
+                      </div>
+                
+                </form>
+            </div>
+        </div>    
+      </div>
+    
+</body>
+</html>
